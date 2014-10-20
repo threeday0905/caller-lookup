@@ -20,6 +20,7 @@ Stack Trace: foo.js > module.js
 ##### foo.js (caller of module.js)
     require('./module.js')
 
+##### OUTPUT
 It will get the full path of **foo.js**
 
 ---
@@ -40,7 +41,8 @@ Stack Trace: bar.js > index.js > module.js
     
 ##### bar.js (caller of index.js)
     require('./index.js')
-    
+
+##### OUTPUT    
 It will get the full path of **bar.js**
 
 
