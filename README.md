@@ -13,7 +13,7 @@ Stack Trace: foo.js > module.js
 ##### module.js
     var lookupCaller = require('caller-lookup');
     
-    // i want to know who call me
+    // I want to know who call me
     console.log( lookupCaller() ); 
     
     
@@ -32,10 +32,10 @@ Stack Trace: bar.js > index.js > module.js
 ##### module.js
     var lookupCaller = require('caller-lookup');
     
-    // my module index is below.
+    // My module index is below.
     var myIndexFile = lookupCaller.resolve(__dirname, 'index.js'); 
     
-    // i want to know who call my index file
+    // I want to know who call my index file during stack trace
     console.log( lookupCaller( myIndexFile) ); 
     
     
