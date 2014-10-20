@@ -1,13 +1,13 @@
 {
   "name": "caller-lookup",
   "version": "0.1.0",
-  "description": "Get the file path of the caller. ",
+  "description": "Get the caller of specific file",
   "main": "index.js",
   "scripts": {
-    "hint": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore",
+    "hint": "jscs {*.js,test} & jshint . --exclude-path .gitignore",
     "mocha": "mocha 'test/**/*.test.js' -R spec",
     "cov": "istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'",
-    "test": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore && istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'"
+    "test": "jscs {*.js,test} & jshint . --exclude-path .gitignore && istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'"
   },
   "repository": {
     "type": "git",
