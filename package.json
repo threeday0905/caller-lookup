@@ -1,0 +1,35 @@
+{
+  "name": "caller-lookup",
+  "version": "0.1.0",
+  "description": "Get the file path of the caller. ",
+  "main": "index.js",
+  "scripts": {
+    "hint": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore",
+    "mocha": "mocha 'test/**/*.test.js' -R spec",
+    "cov": "istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'",
+    "test": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore && istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:threeday0905/caller-lookup.git"
+  },
+  "keywords": [
+    "caller",
+    "lookup"
+  ],
+  "author": "Herman Lee <threeday0905@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/threeday0905/caller-lookup/issues"
+  },
+  "homepage": "https://github.com/threeday0905/caller-lookup",
+  "devDependencies": {
+    "chai": "*",
+    "istanbul": "*",
+    "jscs": "*",
+    "jshint": "*",
+    "mocha": "*",
+    "rewire": "*",
+    "sinon": "*"
+  }
+}
