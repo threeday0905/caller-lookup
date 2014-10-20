@@ -17,7 +17,7 @@ Stack Trace: foo.js > module.js
     console.log( lookupCaller() ); 
     
     
-##### foo.js
+##### foo.js (caller of module.js)
     require('./module.js')
 
 It will get the full path of **foo.js**
@@ -38,7 +38,7 @@ Stack Trace: bar.js > index.js > module.js
     console.log( lookupCaller( myIndexFile) ); 
     
     
-##### bar.js
+##### bar.js (caller of index.js)
     require('./index.js')
     
 It will get the full path of **bar.js**
