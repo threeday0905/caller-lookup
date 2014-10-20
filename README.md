@@ -1,6 +1,6 @@
 Caller Lookup
 =============
-Got the caller-file during stack trace.
+Got the caller-file from stack trace.
 
 
 ---
