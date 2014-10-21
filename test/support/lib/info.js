@@ -3,8 +3,7 @@
 var lookup = require('../../../index');
 
 function lookupAppCaller() {
-    var appFile = lookup.resolve(__dirname, './app.js');
-    return lookup(appFile);
+    return lookup(__dirname, './app.js');
 }
 
 function lookupThisFileCaller() {

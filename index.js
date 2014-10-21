@@ -2,14 +2,34 @@
 
 var path = require('path');
 
+function getTargetFile() {
+    /* default filename is self */
+    if (!arguments.length) {
+        return path.normalize(__filename);
+    }
+
+    var targetFile = arguments.length === 1 ?
+        path.normalize(arguments[0]) :
+        path.resolve.apply(path, arguments);
+
+    if (targetFile[ targetFile.length - 1 ] === '/' ) {
+        targetFile += 'index.js';
+    } else if ( path.extname(targetFile) === '' ) {
+        targetFile += '.js';
+    }
+    return targetFile;
+}
+
 /**
 *   Lookup caller for a specific file
 */
-function lookupFileCaller(targetFile) {
+function lookupFileCaller() {
     /* get the strack trace from this file */
     var originalPrepareStackTrace = Error.prepareStackTrace,
+        targetFile,
         stackTrace;
 
+    /* get stack array */
     Error.prepareStackTrace = function(_, stack) {
         Error.prepareStackTrace = originalPrepareStackTrace;
         return stack;
@@ -18,17 +38,10 @@ function lookupFileCaller(targetFile) {
     stackTrace = (new Error()).stack;
 
     /* get the target file name */
-    targetFile = path.normalize( targetFile || __filename );
+    targetFile = getTargetFile.apply(null, arguments);
 
     var nextFileIsCaller = false,
         targetFileCaller = '';
-
-    /*
-    console.log(targetFile);
-    console.log(stackTrace.map(function(frame) {
-        return frame.getFileName();
-    }));
-    */
 
     stackTrace.every(function(frame) {
         var frameFile = path.normalize( frame.getFileName() );
@@ -52,4 +65,3 @@ function lookupFileCaller(targetFile) {
 }
 
 module.exports = lookupFileCaller;
-module.exports.resolve = path.resolve;

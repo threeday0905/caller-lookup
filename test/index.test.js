@@ -1,6 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect,
+    rewire = require('rewire'),
     path = require('path');
 
 var lookup = require('../index');
@@ -47,8 +48,29 @@ describe('with filename', function() {
     });
 });
 
-describe('other methods', function() {
-    it('should exports path.resolve', function() {
-        expect(lookup.resolve).to.equal( path.resolve );
+describe('target file generator', function() {
+    var getTargetFile = rewire('../index').__get__('getTargetFile');
+
+    it('should return self name, if no provide any arg', function() {
+        expect( getTargetFile() ).to.equal( require.resolve('../index') );
+    });
+
+    it('should return directly, if arg is a path', function() {
+        expect( getTargetFile( __filename) ).to.equal( __filename );
+    });
+
+    it('can resolve path', function() {
+        var result = getTargetFile( __dirname, 'index.js');
+        expect( result ).to.equal( path.resolve(__dirname, 'index.js') );
+    });
+
+    it('will add js extname if no extname', function() {
+        var result = getTargetFile( __dirname, 'index');
+        expect( result ).to.equal( path.resolve(__dirname, 'index.js') );
+    });
+
+    it('will add index.js, if path is endswith "/"', function() {
+        var result = getTargetFile( __dirname + '/' );
+        expect( result ).to.equal( path.resolve(__dirname, 'index.js') );
     });
 });

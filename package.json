@@ -1,6 +1,6 @@
 {
   "name": "caller-lookup",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Get the caller of specific file",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,6 @@
     "jscs": "*",
     "jshint": "*",
     "mocha": "*",
-    "rewire": "*",
-    "sinon": "*"
+    "rewire": "*"
   }
 }
