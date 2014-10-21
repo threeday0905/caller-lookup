@@ -1,49 +1,48 @@
 Caller Lookup
 =============
-Got the caller-file from stack trace.
-
+Got the caller of specific module.
 
 ---
 ### How to Use
 
 #### Normal Case
 
-Stack Trace: foo.js > module.js
+Stack Trace: foo.js --(require)--> [ module.js ]
 
-##### module.js
+##### node_modules/xxx/module.js
     var lookupCaller = require('caller-lookup');
     
-    // I want to know who call me
+    // i want to know who calls me
     console.log( lookupCaller() ); 
     
     
-##### foo.js (caller of module.js)
-    require('./module.js')
+##### foo.js (caller)
+    require('xxx/module.js')
 
 ##### OUTPUT
-It will get the full path of **foo.js**
+Got the path of **foo.js**
 
 ---
 
 #### Specific Target File
 
-Stack Trace: bar.js > index.js > module.js
+Stack Trace: bar.js --(require)--> [ index.js --(require)--> module.js ]
 
-##### module.js
-    var lookupCaller = require('caller-lookup');
+##### node_modules/xxx/module.js
+    var lookupCaller = require('caller-lookup'); 
     
-    // My module index is below.
-    var myIndexFile = lookupCaller.resolve(__dirname, 'index.js'); 
-    
-    // I want to know who call my index file during stack trace
+    // i want to know who calls my index file
+    var myIndexFile = path.resolve(__dirname, './index.js');
     console.log( lookupCaller( myIndexFile) ); 
+
+##### node_modules/xxx/index.js
+    require('./module.js')    
     
-    
-##### bar.js (caller of index.js)
-    require('./index.js')
+##### bar.js (caller)
+    require('xxx/index.js')
 
 ##### OUTPUT    
-It will get the full path of **bar.js**
+Got the path of **bar.js**
 
 
 ---
