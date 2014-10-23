@@ -4,10 +4,10 @@
   "description": "Get the caller of specific file",
   "main": "index.js",
   "scripts": {
-    "hint": "jscs {*.js,test} & jshint . --exclude-path .gitignore",
-    "mocha": "mocha 'test/**/*.test.js' -R spec",
-    "cov": "istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'",
-    "test": "jscs {*.js,test} & jshint . --exclude-path .gitignore && istanbul cover --report html ./node_modules/mocha/bin/_mocha -- -R dot 'test/**/*.test.js'"
+    "hint": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore",
+    "mocha": "mocha 'test/**/*.test.js' --report spec --harmony",
+    "cov": "node --harmony node_modules/.bin/istanbul cover --report html ./node_modules/mocha/bin/_mocha -- 'test/**/*.test.js' --harmony --reporter list ",
+    "test": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore && node --harmony node_modules/.bin/istanbul cover --report html ./node_modules/mocha/bin/_mocha -- 'test/**/*.test.js' --harmony --reporter dot "
   },
   "repository": {
     "type": "git",
